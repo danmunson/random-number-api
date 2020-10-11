@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            let scoreUrl = "http://{{mainUrl}}/score";
+            function scoreComment(){
+                let commentString = document.getElementById("comment").value;
+                let commentSource = document.getElementById("source").value;
+                $.post(
+                    scoreUrl,
+                    data={
+                        comment : commentString,
+                        source : commentSource
+                    },
+                    success=(scoreValue)=>{
+                        console.log(`score=${scoreValue.score}`)
+                    }
+                )
+            }
+        </script>
+    </head>
+    <body>
+
+        <label for="comment">Comment</label>
+        <input id="comment" type="text">
+
+        <label for="source">Source</label>
+        <input id="source" type="text">
+
+        <button onclick="scoreComment()">Submit</button>
+
+    </body>
+    
+</html>
